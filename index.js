@@ -40,9 +40,13 @@ function game(playerSelection) {
             
         }
     } else if (playerWinCount===5) {
-        result.textContent = 'You wow the game! Reload the page to play again.';
+        result.textContent = 'You won the game! Reload the page to play again.';
+
+        once();
     } else if (computerWinCount===5) {
         result.textContent = 'You lost the game! Reload the page to play again.';
+
+        once();
     }
     curScore.textContent = `You: ${playerWinCount}  Computer: ${computerWinCount}`
 }
@@ -50,9 +54,25 @@ function game(playerSelection) {
 
 
 
+function reloadButtonHandler() {
+    let reloadLink = document.createElement('a');
+    reloadLink.href = 'index.html';
 
+    let reloadBtn = document.createElement('button');
+    reloadBtn.textContent = 'Reload'
+    reloadBtn.style.cssText = 'width: 100px; height: 50px; font-size: 10px;'
 
+    results.appendChild(reloadLink);
+    reloadLink.appendChild(reloadBtn);
+}
 
+var once = function () {
+    if (once.done) return;
+
+    reloadButtonHandler();
+
+    once.done = true;
+}
 
 
 
@@ -75,3 +95,4 @@ rockBtn.addEventListener('click', function() {
 
 const result = document.querySelector('.result');
 const curScore = document.querySelector('.curScore');
+const results = document.querySelector('.results');
